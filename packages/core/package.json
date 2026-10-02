@@ -1,0 +1,9 @@
+{
+  "name": "@flarie/core",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": { ".": "./src/index.ts" },
+  "dependencies": { "@flarie/contract": "*" },
+  "peerDependencies": { "react": ">=18" }
+}

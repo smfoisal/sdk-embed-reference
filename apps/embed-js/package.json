@@ -1,0 +1,19 @@
+{
+  "name": "@flarie/embed-js",
+  "version": "1.0.0",
+  "description": "Tiny loader + TypeScript types. The only thing partners install from npm.",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "@flarie/contract": "*"
+  }
+}

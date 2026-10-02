@@ -1,0 +1,15 @@
+{
+  "name": "@flarie/studio",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Illustration only: how the existing standalone Studio consumes the SAME feature packages.",
+  "dependencies": {
+    "@flarie/core": "*",
+    "@flarie/features": "*",
+    "@flarie/tokens": "*",
+    "@flarie/ui": "*",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}

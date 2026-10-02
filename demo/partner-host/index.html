@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" data-brand="fernway">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gamification | Fernway Loyalty (partner demo)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Public+Sans:wght@400;600&family=Nunito+Sans:wght@400;600;700&family=Sora:wght@600;700&display=swap"
+    />
+    <link rel="stylesheet" href="/assets/host.css" />
+    <!-- In a real partner app this mapping is done by their bundler (npm install @flarie/embed-js). -->
+    <script type="importmap">
+      { "imports": { "@flarie/embed-js": "/npm/@flarie/embed-js/index.js" } }
+    </script>
+  </head>
+  <body>
+    <div class="app">
+      <aside class="side">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">F</span>
+          <span class="brand-name">Fernway Loyalty</span>
+        </div>
+        <nav class="nav" aria-label="Main">
+          <a href="#">Campaigns</a>
+          <a href="#">Customers</a>
+          <a href="#">Rewards</a>
+          <a href="#" aria-current="page">Gamification</a>
+          <a href="#">Analytics</a>
+        </nav>
+        <div class="org">
+          <span class="org-label">Workspace</span>
+          <span class="org-name">Harbor Café</span>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="page-head">
+          <div>
+            <h1>Gamification</h1>
+            <p class="lede">Games your customers play to collect points and rewards.</p>
+          </div>
+          <div class="controls">
+            <div class="segmented" role="group" aria-label="Partner theme">
+              <button type="button" data-brand-option="fernway" aria-pressed="true">Fernway</button>
+              <button type="button" data-brand-option="pulse" aria-pressed="false">Pulse</button>
+            </div>
+            <label class="check">
+              <input type="checkbox" id="show-bounds" />
+              Show Flarie areas
+            </label>
+          </div>
+        </header>
+
+        <!-- Inline component: Flarie renders inside this partner-owned element (Shadow DOM). -->
+        <section id="flarie-games" class="slot" data-slot="flarie-game-list (inline, Shadow DOM)"></section>
+
+        <section id="editor" class="editor" hidden aria-labelledby="editor-title">
+          <div class="editor-head">
+            <h2 id="editor-title">Game editor</h2>
+            <button type="button" class="btn-quiet" id="close-editor">Close editor</button>
+          </div>
+          <!-- Full Studio: the runtime creates the iframe and postMessage bridge here. -->
+          <div class="slot" data-slot="studio (iframe)"><div id="flarie-studio"></div></div>
+        </section>
+      </main>
+
+      <aside class="devlog" aria-labelledby="devlog-title">
+        <h2 id="devlog-title">SDK events</h2>
+        <p class="devlog-note">Demo only. Callbacks this partner page receives from Flarie, newest first.</p>
+        <ol id="log" class="log"></ol>
+      </aside>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+    <script type="module" src="/assets/app.js"></script>
+  </body>
+</html>

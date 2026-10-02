@@ -1,0 +1,19 @@
+{
+  "name": "@flarie/embed-runtime",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "The code that lives on the CDN (cdn.flarie.com/embed/<version>/flarie.js). Never installed by partners.",
+  "scripts": {
+    "build": "vite build && node scripts/write-alias.mjs"
+  },
+  "dependencies": {
+    "@flarie/contract": "*",
+    "@flarie/core": "*",
+    "@flarie/features": "*",
+    "@flarie/tokens": "*",
+    "@flarie/ui": "*",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}

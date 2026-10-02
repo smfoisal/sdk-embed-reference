@@ -1,0 +1,9 @@
+{
+  "name": "@flarie/embed-react",
+  "version": "1.0.0",
+  "description": "Thin React bindings. Uses the PARTNER's React only to manage an empty <div>.",
+  "type": "module",
+  "exports": { ".": "./src/index.tsx" },
+  "dependencies": { "@flarie/embed-js": "*" },
+  "peerDependencies": { "react": ">=17" }
+}

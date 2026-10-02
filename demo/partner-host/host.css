@@ -1,0 +1,183 @@
+/* The PARTNER's own styles. Note the global resets and odd base font-size:
+   Flarie's :host { all: initial } and px-based tokens keep them out. */
+*, *::before, *::after { box-sizing: border-box; }
+html { font-size: 15px; }
+body { margin: 0; letter-spacing: 0.005em; }
+button, a { font: inherit; }
+[hidden] { display: none !important; }
+
+:root[data-brand='fernway'] {
+  --bg: #eef2ee;
+  --surface: #ffffff;
+  --ink: #16241d;
+  --muted: #5a6b62;
+  --line: #d5ded8;
+  --brand: #1f4d3a;
+  --brand-soft: #dce8e0;
+  --font-body: 'Public Sans', system-ui, sans-serif;
+  --font-head: 'Bricolage Grotesque', system-ui, sans-serif;
+  --radius: 6px;
+}
+:root[data-brand='pulse'] {
+  --bg: #f5f3ff;
+  --surface: #ffffff;
+  --ink: #1c1537;
+  --muted: #676087;
+  --line: #e2ddf6;
+  --brand: #5b3fd6;
+  --brand-soft: #e8e2ff;
+  --font-body: 'Nunito Sans', system-ui, sans-serif;
+  --font-head: 'Sora', system-ui, sans-serif;
+  --radius: 14px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  transition: background-color 0.25s;
+}
+@media (prefers-reduced-motion: reduce) { body { transition: none; } }
+
+:focus-visible { outline: 3px solid color-mix(in srgb, var(--brand) 45%, transparent); outline-offset: 2px; }
+
+.app {
+  display: grid;
+  grid-template-columns: 224px minmax(0, 1fr) 300px;
+  min-height: 100vh;
+}
+
+/* ---------- sidebar ---------- */
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 22px 16px;
+  background: var(--surface);
+  border-right: 1px solid var(--line);
+}
+.brand { display: flex; align-items: center; gap: 10px; padding: 0 8px; }
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: calc(var(--radius) + 2px);
+  background: var(--brand);
+  color: #fff;
+  font-family: var(--font-head);
+  font-weight: 700;
+}
+.brand-name { font-family: var(--font-head); font-weight: 700; font-size: 1.07rem; }
+.nav { display: grid; gap: 2px; }
+.nav a {
+  padding: 8px 10px;
+  border-radius: var(--radius);
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 600;
+}
+.nav a:hover { color: var(--ink); background: color-mix(in srgb, var(--brand-soft) 55%, transparent); }
+.nav a[aria-current='page'] { color: var(--brand); background: var(--brand-soft); }
+.org { margin-top: auto; display: grid; padding: 12px 10px 0; border-top: 1px solid var(--line); }
+.org-label { color: var(--muted); font-size: 0.87rem; }
+.org-name { font-weight: 600; }
+
+/* ---------- main ---------- */
+.main { padding: 36px 40px 64px; display: grid; gap: 28px; align-content: start; min-width: 0; }
+.page-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; flex-wrap: wrap; }
+.page-head h1 { margin: 0; font-family: var(--font-head); font-size: 2.1rem; line-height: 1.1; letter-spacing: -0.02em; }
+.lede { margin: 8px 0 0; color: var(--muted); max-width: 52ch; }
+.controls { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+
+.segmented { display: inline-flex; padding: 3px; background: var(--surface); border: 1px solid var(--line); border-radius: calc(var(--radius) + 3px); }
+.segmented button {
+  border: 0;
+  padding: 6px 14px;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--muted);
+  font-weight: 600;
+  cursor: pointer;
+}
+.segmented button[aria-pressed='true'] { background: var(--brand); color: #fff; }
+.check { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); cursor: pointer; }
+.check input { accent-color: var(--brand); width: 16px; height: 16px; }
+
+.editor { display: grid; gap: 14px; }
+.editor-head { display: flex; justify-content: space-between; align-items: center; }
+.editor-head h2 { margin: 0; font-family: var(--font-head); font-size: 1.35rem; }
+.btn-quiet {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  padding: 7px 14px;
+  border-radius: var(--radius);
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-quiet:hover { border-color: var(--muted); }
+#flarie-studio { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--surface); }
+
+/* "Show Flarie areas": outlines partner-owned slots that Flarie renders into. */
+.slot { position: relative; }
+.show-bounds .slot { outline: 2px dashed color-mix(in srgb, var(--brand) 60%, transparent); outline-offset: 8px; }
+.show-bounds .slot::before {
+  content: attr(data-slot);
+  position: absolute;
+  top: -30px;
+  right: -8px;
+  padding: 1px 8px;
+  border-radius: 4px;
+  background: var(--brand);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  z-index: 1;
+}
+
+/* ---------- dev log (demo only, deliberately neutral) ---------- */
+.devlog {
+  padding: 24px 18px;
+  border-left: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface) 70%, var(--bg));
+  max-height: 100vh;
+  overflow: auto;
+  position: sticky;
+  top: 0;
+}
+.devlog h2 { margin: 0; font-size: 1rem; }
+.devlog-note { margin: 4px 0 16px; color: var(--muted); font-size: 0.87rem; }
+.log { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.log li { padding: 10px 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; }
+.log-head { display: flex; justify-content: space-between; gap: 8px; }
+.log-name { font-weight: 600; color: var(--brand); font-size: 0.87rem; }
+.log time { color: var(--muted); font-size: 0.8rem; font-variant-numeric: tabular-nums; }
+.log-payload { margin: 6px 0 0; font-size: 0.78rem; white-space: pre-wrap; word-break: break-word; color: var(--ink); }
+.log-payload:empty { display: none; }
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  padding: 10px 18px;
+  background: var(--ink);
+  color: var(--surface);
+  border-radius: var(--radius);
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgb(0 0 0 / 0.2);
+}
+
+@media (max-width: 1180px) {
+  .app { grid-template-columns: 224px minmax(0, 1fr); }
+  .devlog { grid-column: 1 / -1; position: static; max-height: none; border-left: 0; border-top: 1px solid var(--line); }
+}
+@media (max-width: 760px) {
+  .app { grid-template-columns: minmax(0, 1fr); }
+  .side { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 12px; border-right: 0; border-bottom: 1px solid var(--line); }
+  .nav { display: flex; flex: 1 1 100%; min-width: 0; overflow-x: auto; }
+  .org { display: none; }
+  .main { padding: 24px 16px 48px; }
+}
